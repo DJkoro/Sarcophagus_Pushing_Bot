@@ -33,9 +33,7 @@ def custom_command(update, context):
 
 
 def handle_message(update, context):
-    userid =['1585090984']
-    for id in userid:
-        if update.message.chat.id == 1585090984 :
+    
             text = str(update.message.text).lower()
             logging.info(f'User ({update.message.chat.id}) says: {text}')
 
