@@ -1,7 +1,7 @@
-
 import logging
+from matplotlib.pyplot import text
 from telegram.ext import *
-import responses
+# import responses
 from telegram import Bot, update
 import os
 import dotenv
@@ -23,7 +23,7 @@ logging.info('Starting Bot...')
 def start_command(update, context):
     update.message.reply_text('Hello Embalmer! Welcome to Sarcophagus bot')
     bot.send_photo(update.message.chat_id, 'https://static.wixstatic.com/media/7688ef_f73547c3c232478f997883a8768deda9~mv2.gif')
-
+    bot.sendMessage(update.message.chat_id,text = 'please message begin to start')
 def help_command(update, context):
     update.message.reply_text('This is a bot to help you create you sarcophagus.For more info please visit https://sarcophagus.io/')
 
@@ -33,16 +33,29 @@ def custom_command(update, context):
 
 
 def handle_message(update, context):
-    
+
             text = str(update.message.text).lower()
             logging.info(f'User ({update.message.chat.id}) says: {text}')
 
     # Bot response
-            if text == 'yes':
+            if text == 'begin':
+                response='please send numbers from 1 to get instructions for corresponding steps'
+            elif text=='1':
                 response='Enter the name of your sarcophagi'
-            else if text==''
+            elif text=='2':
+                response='type the public key of recipient.(use : https://app.dev.sarcophagus.io/#/publicKey if required)'
+            elif text=='3':
+                response='choose the time until which you need the data to be wrapped(this can be altered through rewrapping)'
+            elif text=='4':
+                response='Pick an archaeologist with suitable metrics,bounty and digging fee for you!'
+            elif text=='5':
+                response='click on finish and wait some time till data is uploaded on arweave'
+            elif text=='6':
+                response='click sign button and approve the transaction from your wallet'
+            
+                
 
-            response = responses.get_response(text)
+            # response = responses.get_response(text)
             update.message.reply_text(response)
 
 
